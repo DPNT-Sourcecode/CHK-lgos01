@@ -86,7 +86,3 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("ABCD"), equalTo(115));
     }
 }
-
-
-
-

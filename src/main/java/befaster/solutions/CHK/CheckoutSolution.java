@@ -39,8 +39,11 @@ public class CheckoutSolution {
           continue;
         }
         int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
-        if (skuCount.get(freeSku) >= numOfFree){
+        System.out.println(numOfFree);
+        if (skuCount.get(freeSku) - numOfFree >= 0){
           skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
+        } else {
+          skuCount.put(freeSku, 0);
         }
       }
     }
@@ -82,8 +85,3 @@ public class CheckoutSolution {
     buyXGetXFreeOffers.add(new BuyXGetXFreeOffer('E', 2, 'B', 1));
   }
 }
-
-
-
-
-
