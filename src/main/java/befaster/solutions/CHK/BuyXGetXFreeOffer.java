@@ -1,12 +1,16 @@
 package befaster.solutions.CHK;
 
-public class MultiPricedOffer {
+public class BuyXGetXFreeOffer {
   private char sku;
-  private int specialPrice;
   private int specialQuantity;
-  public MultiPricedOffer(char sku, int specialPrice, int specialQuantity) {
+
+  private char freeSku;
+
+  private int freeQuantity;
+  public BuyXGetXFreeOffer(char sku, int specialQuantity, char freeSku, int freeQuantity) {
     this.sku = sku;
-    this.specialPrice = specialPrice;
+    this.freeSku = freeSku;
+    this.freeQuantity = freeQuantity;
     this.specialQuantity = specialQuantity;
   }
 
@@ -14,11 +18,15 @@ public class MultiPricedOffer {
     return sku;
   }
 
-  public int getSpecialPrice() {
-    return specialPrice;
-  }
-
   public int getSpecialQuantity() {
     return specialQuantity;
+  }
+
+  public char getFreeSku() {
+    return freeSku;
+  }
+
+  public int getFreeQuantity() {
+    return freeQuantity;
   }
 }

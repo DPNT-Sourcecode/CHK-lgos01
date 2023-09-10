@@ -8,7 +8,7 @@ import java.util.Map;
 public class CheckoutSolution {
 
     Map<Character, Integer> prices = new HashMap<>();
-    List<Offer> offers = new ArrayList<>();
+    List<MultiPricedOffer> multiPricedOffers = new ArrayList<>();
 
 
     public Integer checkout(String skus) {
@@ -26,10 +26,11 @@ public class CheckoutSolution {
 
         int total = 0;
 
-        for (Offer offer : offers){
-            if (skuCount.containsKey(offer.getSku())){
-                total += offer.getSpecialPrice() * (skuCount.get(offer.getSku()) / offer.getSpecialQuantity());
-                skuCount.put(offer.getSku(), skuCount.get(offer.getSku()) % offer.getSpecialQuantity());
+        for (MultiPricedOffer multiPricedOffer : multiPricedOffers){
+            if (skuCount.containsKey(multiPricedOffer.getSku())){
+                total += multiPricedOffer.getSpecialPrice() * (skuCount.get(multiPricedOffer.getSku()) / multiPricedOffer.getSpecialQuantity());
+                skuCount.put(multiPricedOffer.getSku(), skuCount.get(
+                    multiPricedOffer.getSku()) % multiPricedOffer.getSpecialQuantity());
             }
         }
 
@@ -65,7 +66,10 @@ public class CheckoutSolution {
     }
 
     private void buildOffers(){
-        offers.add(new Offer('A', 130, 3));
-        offers.add(new Offer('B', 130, 3));
+        multiPricedOffers.add(new MultiPricedOffer('A', 130, 3));
+        multiPricedOffers.add(new MultiPricedOffer('B', 130, 3));
+        multiPricedOffers.add(new MultiPricedOffer('A', 200, 5));
+
     }
 }
+
