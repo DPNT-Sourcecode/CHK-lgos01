@@ -25,16 +25,29 @@ public class CheckoutSolution {
 
 
         int total = 0;
-        if (skuCount.containsKey('A')) {
-            total += 130 * (skuCount.get('A') / 3);
-            skuCount.put('A', skuCount.get('A') % 3);
 
+        for (Offer offer : offers){
+            if (skuCount.containsKey(offer.getSku())){
+                total += offer.getSpecialPrice() * (skuCount.get(offer.getSku()) / offer.getSpecialQuantity());
+                skuCount.put(offer.getSku(), skuCount.get(offer.getSku()) % offer.getSpecialQuantity());
+            }
         }
-        if (skuCount.containsKey('B')) {
-            total += 45 * (skuCount.get('B') / 2);
-            skuCount.put('B', skuCount.get('B') % 2);
 
+
+        if (skuCount.containsKey('E')) {
+            int freeBs = skuCount.get('E') / 2;
+            if (skuCount.containsKey('B')){
+                if (freeBs >= skuCount.get('B')) {
+                    skuCount.remove('B');
+                }
+                else {
+                    skuCount.put('B', skuCount.get('B') - freeBs);
+                }
+            }
         }
+
+        System.out.println(skuCount);
+
 
         for (Map.Entry<Character, Integer> entry : skuCount.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
@@ -54,23 +67,6 @@ public class CheckoutSolution {
     private void buildOffers(){
         offers.add(new Offer('A', 130, 3));
         offers.add(new Offer('B', 130, 3));
-        offers.add(new Offer('E', 130, 3);
-        offers.add(new Offer('A', 130, 3);
-
-        prices.put('B', 30);
-        prices.put('C', 20);
-        prices.put('D', 15);
-    }
-
-    public class Offer {
-        private char sku;
-        private int specialPrice;
-        private int specialQuantity;
-        public Offer(char sku, int specialPrice, int specialQuantity) {
-            this.sku = sku;
-            this.specialPrice = specialPrice;
-            this.specialQuantity = specialQuantity;
-        }
     }
 }
 
