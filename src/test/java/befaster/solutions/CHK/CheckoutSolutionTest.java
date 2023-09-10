@@ -13,6 +13,12 @@ public class CheckoutSolutionTest {
 
     private CheckoutSolution checkout;
 
+    /*
+     - {"method":"checkout","params":["B"],"id":"CHK_R1_004"}, expected: 30, got: 80
+ - {"method":"checkout","params":["C"],"id":"CHK_R1_005"}, expected: 20, got: 100
+ - {"method":"checkout","params":["D"],"id":"CHK_R1_006"}, expected: 15, got: 115
+     */
+
     @BeforeEach
     public void setUp() {
         checkout = new CheckoutSolution();
@@ -64,4 +70,5 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("ABCD"), equalTo(115));
     }
 }
+
 
