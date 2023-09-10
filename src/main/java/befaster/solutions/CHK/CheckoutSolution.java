@@ -32,20 +32,43 @@ public class CheckoutSolution {
 
 
     for (BuyXGetXFreeOffer offer : buyXGetXFreeOffers) {
-      applyBuyXGetXFreeOffer(offer);
+      char offerSku = offer.getSku();
+      int specialQuantity = offer.getSpecialQuantity();
+      char freeSku = offer.getFreeSku();
+      int freeQuantity = offer.getFreeQuantity();
+
+      if (skuCount.containsKey(offerSku) && skuCount.containsKey(freeSku)) {
+        if (skuCount.get(freeSku) == 0) {
+          continue;
+        }
+        int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
+        System.out.println(numOfFree);
+        if (skuCount.get(freeSku) - numOfFree >= 0){
+          skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
+        } else {
+          skuCount.put(freeSku, 0);
+        }
+      }
     }
 
     System.out.println("skuCount after buyXgetXfree offers: " + skuCount);
 
     for (MultiPricedOffer multiPricedOffer : multiPricedOffers) {
-      total += applyMultiPricedOffer(multiPricedOffer);
+      char offerSku = multiPricedOffer.getSku();
+      if (skuCount.containsKey(offerSku)) {
+        int specialQuantity = multiPricedOffer.getSpecialQuantity();
+        total += multiPricedOffer.getSpecialPrice() * (skuCount.get(offerSku) / specialQuantity);
+        skuCount.put(offerSku, skuCount.get(offerSku) % specialQuantity);
+      }
     }
 
     System.out.println("total after multi priced offers: " + total);
 
-    total += applyPrices();
+    for (Map.Entry<Character, Integer> entry : skuCount.entrySet()) {
+      total += entry.getValue() * prices.get(entry.getKey());
+    }
 
-    System.out.println("total after standard prices: " + total);
+    System.out.println("total after checkout: " + total);
 
     return total;
   }
@@ -65,43 +88,7 @@ public class CheckoutSolution {
     buyXGetXFreeOffers.add(new BuyXGetXFreeOffer('E', 2, 'B', 1));
   }
 
-  private void applyBuyXGetXFreeOffer(BuyXGetXFreeOffer offer){
-    char offerSku = offer.getSku();
-    int specialQuantity = offer.getSpecialQuantity();
-    char freeSku = offer.getFreeSku();
-    int freeQuantity = offer.getFreeQuantity();
-
-    if (skuCount.containsKey(offerSku) && skuCount.containsKey(freeSku)) {
-      if (!(skuCount.get(freeSku) == 0)) {
-        int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
-        System.out.println(numOfFree);
-        if (skuCount.get(freeSku) - numOfFree >= 0) {
-          skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
-        } else {
-          skuCount.put(freeSku, 0);
-        }
-      }
-    }
-  }
-
-  private int applyMultiPricedOffer(MultiPricedOffer offer){
-    char offerSku = offer.getSku();
-    int offerTotal = 0;
-    if (skuCount.containsKey(offerSku)) {
-      int specialQuantity = offer.getSpecialQuantity();
-      offerTotal += offer.getSpecialPrice() * (skuCount.get(offerSku) / specialQuantity);
-      skuCount.put(offerSku, skuCount.get(offerSku) % specialQuantity);
-    }
-    return offerTotal;
-  }
-
-  private int applyPrices(){
-    int total = 0;
-    for (Map.Entry<Character, Integer> entry : skuCount.entrySet()) {
-      total += entry.getValue() * prices.get(entry.getKey());
-    }
-    return total;
-  }
 }
+
 
 

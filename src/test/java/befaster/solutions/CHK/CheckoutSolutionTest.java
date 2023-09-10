@@ -14,9 +14,9 @@ public class CheckoutSolutionTest {
     private CheckoutSolution checkout;
 
     /*
-     - {"method":"checkout","params":["B"],"id":"CHK_R1_004"}, expected: 30, got: 80
- - {"method":"checkout","params":["C"],"id":"CHK_R1_005"}, expected: 20, got: 100
- - {"method":"checkout","params":["D"],"id":"CHK_R1_006"}, expected: 15, got: 115
+ - {"method":"checkout","params":["ABCDEABCDE"],"id":"CHK_R2_038"}, expected: 280, got: 250
+ - {"method":"checkout","params":["CCADDEEBBA"],"id":"CHK_R2_039"}, expected: 280, got: 250
+ - {"method":"checkout","params":["AAAAAEEBAAABB"],"id":"CHK_R2_040"}, expected: 455, got: 410
      */
 
     @BeforeEach
@@ -27,6 +27,11 @@ public class CheckoutSolutionTest {
     @Test
     public void test_2E_1B() {
         assertThat(checkout.checkout("EEB"), equalTo(80));
+    }
+
+    @Test
+    public void test_failure_1() {
+        assertThat(checkout.checkout("ABCDEABCDE"), equalTo(280));
     }
 
     @Test
@@ -86,3 +91,4 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("ABCD"), equalTo(115));
     }
 }
+
