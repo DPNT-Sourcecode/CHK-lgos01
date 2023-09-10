@@ -1,12 +1,14 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
 
     Map<Character, Integer> prices = new HashMap<>();
-    Map<Character, Integer> offers = new HashMap<>();
+    List<Offer> offers = new ArrayList<>();
 
 
     public Integer checkout(String skus) {
@@ -50,11 +52,27 @@ public class CheckoutSolution {
     }
 
     private void buildOffers(){
-        offers.put(, 50);
+        offers.add(new Offer('A', 130, 3));
+        offers.add(new Offer('B', 130, 3));
+        offers.add(new Offer('E', 130, 3);
+        offers.add(new Offer('A', 130, 3);
+
         prices.put('B', 30);
         prices.put('C', 20);
         prices.put('D', 15);
     }
+
+    public class Offer {
+        private char sku;
+        private int specialPrice;
+        private int specialQuantity;
+        public Offer(char sku, int specialPrice, int specialQuantity) {
+            this.sku = sku;
+            this.specialPrice = specialPrice;
+            this.specialQuantity = specialQuantity;
+        }
+    }
 }
+
 
 
