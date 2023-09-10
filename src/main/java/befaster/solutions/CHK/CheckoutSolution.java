@@ -28,7 +28,6 @@ public class CheckoutSolution {
         int total = 0;
 
         for (MultiPricedOffer multiPricedOffer : multiPricedOffers){
-            System.out.println(multiPricedOffer);
             char offerSku = multiPricedOffer.getSku();
             if (skuCount.containsKey(offerSku)){
                 int specialQuantity = multiPricedOffer.getSpecialQuantity();
@@ -52,12 +51,14 @@ public class CheckoutSolution {
             }
         }
 
-        System.out.println(skuCount);
+        System.out.println("count after offers: " + skuCount);
 
 
         for (Map.Entry<Character, Integer> entry : skuCount.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
         }
+
+        System.out.println("total after checkout: " +  total);
 
         return total;
     }
@@ -73,8 +74,9 @@ public class CheckoutSolution {
     private void buildOffers(){
         multiPricedOffers.add(new MultiPricedOffer('A', 200, 5));
         multiPricedOffers.add(new MultiPricedOffer('A', 130, 3));
-        multiPricedOffers.add(new MultiPricedOffer('B', 130, 3));
+        multiPricedOffers.add(new MultiPricedOffer('B', 45, 2));
     }
 }
+
 
 
