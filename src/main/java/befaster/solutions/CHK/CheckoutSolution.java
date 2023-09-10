@@ -11,8 +11,6 @@ public class CheckoutSolution {
   List<MultiPricedOffer> multiPricedOffers = new ArrayList<>();
   List<BuyXGetXFreeOffer> buyXGetXFreeOffers = new ArrayList<>();
 
-  Map<Character, Integer> skuCount;
-
 
   public Integer checkout(String skus) {
     buildPrices();
@@ -89,6 +87,7 @@ public class CheckoutSolution {
   }
 
 }
+
 
 
 
