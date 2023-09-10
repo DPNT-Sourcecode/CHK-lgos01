@@ -56,6 +56,7 @@ public class SendCommandToServer {
 
         QueueBasedImplementationRunner runner = new QueueBasedImplementationRunner.Builder()
                 .setConfig(getRunnerConfig())
+
                 .withSolutionFor("sum", entry::sum)
                 .withSolutionFor("hello", entry::hello)
                 .withSolutionFor("array_sum", entry::arraySum)
@@ -72,3 +73,4 @@ public class SendCommandToServer {
     }
 
 }
+
