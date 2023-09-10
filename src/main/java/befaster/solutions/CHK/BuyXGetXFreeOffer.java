@@ -1,10 +1,10 @@
 package befaster.solutions.CHK;
 
-public class Offer {
+public class MultiPricedOffer {
   private char sku;
   private int specialPrice;
   private int specialQuantity;
-  public Offer(char sku, int specialPrice, int specialQuantity) {
+  public MultiPricedOffer(char sku, int specialPrice, int specialQuantity) {
     this.sku = sku;
     this.specialPrice = specialPrice;
     this.specialQuantity = specialQuantity;
