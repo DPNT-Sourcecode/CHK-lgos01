@@ -13,6 +13,7 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         buildPrices();
+        buildOffers();
 
         Map<Character, Integer> skuCount = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
@@ -27,12 +28,16 @@ public class CheckoutSolution {
         int total = 0;
 
         for (MultiPricedOffer multiPricedOffer : multiPricedOffers){
-            if (skuCount.containsKey(multiPricedOffer.getSku())){
-                total += multiPricedOffer.getSpecialPrice() * (skuCount.get(multiPricedOffer.getSku()) / multiPricedOffer.getSpecialQuantity());
-                skuCount.put(multiPricedOffer.getSku(), skuCount.get(
-                    multiPricedOffer.getSku()) % multiPricedOffer.getSpecialQuantity());
+            System.out.println(multiPricedOffer);
+            char offerSku = multiPricedOffer.getSku();
+            if (skuCount.containsKey(offerSku)){
+                int specialQuantity = multiPricedOffer.getSpecialQuantity();
+                total += multiPricedOffer.getSpecialPrice() * (skuCount.get(offerSku) / specialQuantity);
+                skuCount.put(offerSku, skuCount.get(offerSku) % specialQuantity);
             }
         }
+
+        System.out.println("total after multi priced offers: " +  total);
 
 
         if (skuCount.containsKey('E')) {
@@ -66,10 +71,10 @@ public class CheckoutSolution {
     }
 
     private void buildOffers(){
+        multiPricedOffers.add(new MultiPricedOffer('A', 200, 5));
         multiPricedOffers.add(new MultiPricedOffer('A', 130, 3));
         multiPricedOffers.add(new MultiPricedOffer('B', 130, 3));
-        multiPricedOffers.add(new MultiPricedOffer('A', 200, 5));
-
     }
 }
+
 
