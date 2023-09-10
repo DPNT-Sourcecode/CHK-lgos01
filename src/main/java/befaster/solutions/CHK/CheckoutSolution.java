@@ -30,7 +30,7 @@ public class CheckoutSolution {
             skuCount.put('B', skuCount.get('B') % 2);
 
         }
-        System.out.println(skuCount);
+
         for (Map.Entry<Character, Integer> entry : skuCount.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
         }
@@ -45,3 +45,4 @@ public class CheckoutSolution {
         prices.put('D', 15);
     }
 }
+

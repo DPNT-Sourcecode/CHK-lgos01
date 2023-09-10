@@ -58,4 +58,10 @@ public class CheckoutSolutionTest {
     public void test_D() {
         assertThat(checkout.checkout("D"), equalTo(15));
     }
+
+    @Test
+    public void test_ABCD() {
+        assertThat(checkout.checkout("ABCD"), equalTo(115));
+    }
 }
+
