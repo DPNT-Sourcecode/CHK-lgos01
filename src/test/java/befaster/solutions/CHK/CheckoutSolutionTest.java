@@ -1,10 +1,9 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CheckoutSolution {
+public class CheckoutSolutionTest {
 
     Map<Character, Integer> prices = new HashMap<>();
     Map<Character, Integer> count = new HashMap<>();
@@ -23,7 +22,6 @@ public class CheckoutSolution {
         total += 130 * count.get('A') / 3;
         total += 45 * count.get('B') / 2;
 
-        count.put('A', )
         for (Map.Entry<Character, Integer> entry : count.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
         }
@@ -34,6 +32,3 @@ public class CheckoutSolution {
         return total;
     }
 }
-
-
-
