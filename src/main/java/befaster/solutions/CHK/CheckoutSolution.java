@@ -23,8 +23,8 @@ public class CheckoutSolution {
             count.put(sku, count.getOrDefault(sku, 0) + 1);
         }
 
-        total += 130 * count.get('A') / 3;
-        total += 45 * count.get('B') / 2;
+        total += 130 * (count.get('A') / 3);
+        total += 45 * (count.get('B') / 2);
 
         count.put('A', count.get('A') % 3);
         count.put('B', count.get('A') % 2);
@@ -37,6 +37,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 

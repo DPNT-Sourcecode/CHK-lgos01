@@ -30,9 +30,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void test_prices() {
-        //10 A's, 7B's = 130 * 3 + 3 * 45 = 525
-        assertThat(checkout.checkout("AAAAAAAAAABBBBBBB"), equalTo(525));
+        //10 A's, 7B's = 130 * 3 + 3 * 45 = 525 + 50 + 30 = 605
+        assertThat(checkout.checkout("AAAAAAAAAABBBBBBB"), equalTo(605));
     }
 }
+
 
 
