@@ -6,6 +6,8 @@ import java.util.Map;
 public class CheckoutSolution {
 
     Map<Character, Integer> prices = new HashMap<>();
+    Map<Character, Integer> offers = new HashMap<>();
+
 
     public Integer checkout(String skus) {
         buildPrices();
@@ -44,6 +46,15 @@ public class CheckoutSolution {
         prices.put('B', 30);
         prices.put('C', 20);
         prices.put('D', 15);
+        prices.put('E', 40);
+    }
+
+    private void buildOffers(){
+        offers.put(, 50);
+        prices.put('B', 30);
+        prices.put('C', 20);
+        prices.put('D', 15);
     }
 }
+
 
