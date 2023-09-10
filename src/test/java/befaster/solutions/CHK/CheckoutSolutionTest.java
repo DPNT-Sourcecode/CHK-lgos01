@@ -21,12 +21,28 @@ public class CheckoutSolutionTest {
     @Test
     public void compute_checkout() {
         assertThat(checkout.checkout("AAABBAAABB"), equalTo(350));
-        assertThat(checkout.checkout("REAAABBAAABB"), equalTo(-1));
-        //10 A's, 7B's = 130 * 3 + 3 * 45 = 525 + 50 + 30 = 605
+    }
 
+    @Test
+    public void test_illegal_argument() {
+        assertThat(checkout.checkout("REAAABBAAABB"), equalTo(-1));
+    }
+
+    @Test
+    public void test_multi_prices() {
+        //10 A's, 7B's = 130 * 3 + 3 * 45 = 525 + 50 + 30 = 605
         assertThat(checkout.checkout("AAAAAAAAAABBBBBBB"), equalTo(605));
+    }
+
+    @Test
+    public void test_all_prices() {
         assertThat(checkout.checkout("ABC"), equalTo(100));
+    }
+
+    @Test
+    public void test_missing_skus() {
         assertThat(checkout.checkout("A"), equalTo(50));
     }
 }
+
 

@@ -22,13 +22,15 @@ public class CheckoutSolution {
         int total = 0;
         if (skuCount.containsKey('A')) {
             total += 130 * (skuCount.get('A') / 3);
+            skuCount.put('A', skuCount.get('A') % 3);
+
         }
         if (skuCount.containsKey('B')) {
             total += 45 * (skuCount.get('B') / 2);
-        }
+            skuCount.put('B', skuCount.get('B') % 2);
 
-        skuCount.put('A', skuCount.get('A') % 3);
-        skuCount.put('B', skuCount.get('A') % 2);
+        }
+        System.out.println(skuCount);
         for (Map.Entry<Character, Integer> entry : skuCount.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
         }
@@ -43,4 +45,5 @@ public class CheckoutSolution {
         prices.put('D', 15);
     }
 }
+
 
