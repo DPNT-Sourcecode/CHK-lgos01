@@ -69,6 +69,3 @@ public class CheckoutSolution {
         offers.add(new Offer('B', 130, 3));
     }
 }
-
-
-
