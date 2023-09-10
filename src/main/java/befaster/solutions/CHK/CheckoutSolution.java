@@ -18,7 +18,7 @@ public class CheckoutSolution {
     buildPrices();
     buildOffers();
 
-    this.skuCount = new HashMap<>();
+    Map<Character, Integer> skuCount = new HashMap<>();
     for (int i = 0; i < skus.length(); i++) {
       char sku = skus.charAt(i);
       if (!prices.containsKey(sku)) {
@@ -89,6 +89,7 @@ public class CheckoutSolution {
   }
 
 }
+
 
 
 
