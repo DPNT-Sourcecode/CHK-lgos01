@@ -40,9 +40,25 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_missing_skus() {
+    public void test_A() {
         assertThat(checkout.checkout("A"), equalTo(50));
     }
+
+    @Test
+    public void test_B() {
+        assertThat(checkout.checkout("B"), equalTo(30));
+    }
+
+    @Test
+    public void test_C() {
+        assertThat(checkout.checkout("C"), equalTo(20));
+    }
+
+    @Test
+    public void test_D() {
+        assertThat(checkout.checkout("D"), equalTo(15));
+    }
 }
+
 
 
