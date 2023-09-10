@@ -11,12 +11,14 @@ public class CheckoutSolution {
   List<MultiPricedOffer> multiPricedOffers = new ArrayList<>();
   List<BuyXGetXFreeOffer> buyXGetXFreeOffers = new ArrayList<>();
 
+  Map<Character, Integer> skuCount;
+
 
   public Integer checkout(String skus) {
     buildPrices();
     buildOffers();
 
-    Map<Character, Integer> skuCount = new HashMap<>();
+    this.skuCount = new HashMap<>();
     for (int i = 0; i < skus.length(); i++) {
       char sku = skus.charAt(i);
       if (!prices.containsKey(sku)) {
@@ -25,27 +27,12 @@ public class CheckoutSolution {
       skuCount.put(sku, skuCount.getOrDefault(sku, 0) + 1);
     }
 
+
     int total = 0;
 
 
     for (BuyXGetXFreeOffer offer : buyXGetXFreeOffers) {
-      char offerSku = offer.getSku();
-      int specialQuantity = offer.getSpecialQuantity();
-      char freeSku = offer.getFreeSku();
-      int freeQuantity = offer.getFreeQuantity();
-
-      if (skuCount.containsKey(offerSku) && skuCount.containsKey(freeSku)) {
-        if (skuCount.get(freeSku) == 0) {
-          continue;
-        }
-        int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
-        System.out.println(numOfFree);
-        if (skuCount.get(freeSku) - numOfFree >= 0){
-          skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
-        } else {
-          skuCount.put(freeSku, 0);
-        }
-      }
+      applyBuyXGetXFreeOffer(offer);
     }
 
     System.out.println("skuCount after buyXgetXfree offers: " + skuCount);
@@ -84,4 +71,24 @@ public class CheckoutSolution {
     multiPricedOffers.add(new MultiPricedOffer('B', 45, 2));
     buyXGetXFreeOffers.add(new BuyXGetXFreeOffer('E', 2, 'B', 1));
   }
+
+  private void applyBuyXGetXFreeOffer(BuyXGetXFreeOffer offer){
+    char offerSku = offer.getSku();
+    int specialQuantity = offer.getSpecialQuantity();
+    char freeSku = offer.getFreeSku();
+    int freeQuantity = offer.getFreeQuantity();
+
+    if (skuCount.containsKey(offerSku) && skuCount.containsKey(freeSku)) {
+      if (!(skuCount.get(freeSku) == 0)) {
+        int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
+        System.out.println(numOfFree);
+        if (skuCount.get(freeSku) - numOfFree >= 0) {
+          skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
+        } else {
+          skuCount.put(freeSku, 0);
+        }
+      }
+    }
+  }
 }
+
