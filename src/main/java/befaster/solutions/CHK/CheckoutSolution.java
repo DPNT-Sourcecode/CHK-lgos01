@@ -6,10 +6,11 @@ import java.util.Map;
 public class CheckoutSolution {
 
     Map<Character, Integer> prices = new HashMap<>();
-    Map<Character, Integer> skuCount = new HashMap<>();
+
     public Integer checkout(String skus) {
         buildPrices();
 
+        Map<Character, Integer> skuCount = new HashMap<>();
         for (int i = 0; i < skus.length(); i++) {
             char sku = skus.charAt(i);
             if (!prices.containsKey(sku)){
@@ -45,3 +46,4 @@ public class CheckoutSolution {
         prices.put('D', 15);
     }
 }
+
