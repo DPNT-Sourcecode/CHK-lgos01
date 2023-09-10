@@ -27,16 +27,6 @@ public class CheckoutSolution {
 
     int total = 0;
 
-    for (MultiPricedOffer multiPricedOffer : multiPricedOffers) {
-      char offerSku = multiPricedOffer.getSku();
-      if (skuCount.containsKey(offerSku)) {
-        int specialQuantity = multiPricedOffer.getSpecialQuantity();
-        total += multiPricedOffer.getSpecialPrice() * (skuCount.get(offerSku) / specialQuantity);
-        skuCount.put(offerSku, skuCount.get(offerSku) % specialQuantity);
-      }
-    }
-
-    System.out.println("total after multi priced offers: " + total);
 
     for (BuyXGetXFreeOffer offer : buyXGetXFreeOffers) {
       char offerSku = offer.getSku();
@@ -50,23 +40,23 @@ public class CheckoutSolution {
         }
         int numOfFree = (skuCount.get(offerSku) / specialQuantity) * freeQuantity;
         if (skuCount.get(freeSku) >= numOfFree){
-          skuCount.put(freeSku, numOfFree);
+          skuCount.put(freeSku, skuCount.get(freeSku) - numOfFree);
         }
       }
     }
 
-    if (skuCount.containsKey('E')) {
-      int freeBs = skuCount.get('E') / 2;
-      if (skuCount.containsKey('B')) {
-        if (freeBs >= skuCount.get('B')) {
-          skuCount.remove('B');
-        } else {
-          skuCount.put('B', skuCount.get('B') - freeBs);
-        }
+    System.out.println("skuCount after buyXgetXfree offers: " + skuCount);
+
+    for (MultiPricedOffer multiPricedOffer : multiPricedOffers) {
+      char offerSku = multiPricedOffer.getSku();
+      if (skuCount.containsKey(offerSku)) {
+        int specialQuantity = multiPricedOffer.getSpecialQuantity();
+        total += multiPricedOffer.getSpecialPrice() * (skuCount.get(offerSku) / specialQuantity);
+        skuCount.put(offerSku, skuCount.get(offerSku) % specialQuantity);
       }
     }
 
-    System.out.println("count after offers: " + skuCount);
+    System.out.println("total after multi priced offers: " + total);
 
     for (Map.Entry<Character, Integer> entry : skuCount.entrySet()) {
       total += entry.getValue() * prices.get(entry.getKey());
@@ -92,6 +82,7 @@ public class CheckoutSolution {
     buyXGetXFreeOffers.add(new BuyXGetXFreeOffer('E', 2, 'B', 1));
   }
 }
+
 
 
 
