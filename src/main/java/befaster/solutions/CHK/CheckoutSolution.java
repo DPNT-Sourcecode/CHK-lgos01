@@ -45,4 +45,3 @@ public class CheckoutSolution {
         prices.put('D', 15);
     }
 }
-
