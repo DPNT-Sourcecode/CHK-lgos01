@@ -28,6 +28,7 @@ public class CheckoutSolution {
 
         count.put('A', count.get('A') % 3);
         count.put('B', count.get('A') % 2);
+        System.out.println(count);
         for (Map.Entry<Character, Integer> entry : count.entrySet()){
             total += entry.getValue() * prices.get(entry.getKey());
         }
@@ -36,6 +37,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 

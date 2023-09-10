@@ -27,5 +27,12 @@ public class CheckoutSolutionTest {
     public void test_illegal_argument() {
         assertThat(checkout.checkout("REAAABBAAABB"), equalTo(-1));
     }
+
+    @Test
+    public void test_prices() {
+        //10 A's, 7B's = 130 * 3 + 3 * 45 = 525
+        assertThat(checkout.checkout("AAAAAAAAAABBBBBBB"), equalTo(525));
+    }
 }
+
 
