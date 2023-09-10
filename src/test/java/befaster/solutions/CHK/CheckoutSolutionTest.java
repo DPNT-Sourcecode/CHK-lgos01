@@ -26,8 +26,8 @@ public class CheckoutSolutionTest {
 
     @Test
     public void compute_checkout() {
-        // 6 As and 4Bs
-        assertThat(checkout.checkout("AAABBAAABB"), equalTo(350));
+        // 6 As and 4Bs = 200 + 50 + 90
+        assertThat(checkout.checkout("AAABBAAABB"), equalTo(340));
     }
 
     @Test
@@ -70,5 +70,6 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("ABCD"), equalTo(115));
     }
 }
+
 
 
