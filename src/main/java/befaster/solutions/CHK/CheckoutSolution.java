@@ -20,7 +20,15 @@ public class CheckoutSolution {
             count.put(sku, count.getOrDefault(sku, 0) + 1);
         }
 
-        count.get('A') ;
+        total += 130 * count.get('A') / 3;
+        total += 45 * count.get('B') / 2;
+
+        for (int i = 0; i < ; i++) {
+            
+        }
+        total += count.get('A') % 3;
+        int remainingBs = count.get('B') % 3;
+
         // get number of 3A's and subtract from total number of As
         // get number of 2B's and subtract from total number of B
 
@@ -29,4 +37,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
