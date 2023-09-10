@@ -25,6 +25,22 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void test_2E_1B() {
+        assertThat(checkout.checkout("EEB"), equalTo(80));
+    }
+
+    @Test
+    public void test_4E_1B() {
+        assertThat(checkout.checkout("EEEEB"), equalTo(160));
+    }
+
+    @Test
+    public void test_4E_2B() {
+        assertThat(checkout.checkout("EEEEBB"), equalTo(160));
+    }
+
+
+    @Test
     public void compute_checkout() {
         // 6 As and 4Bs = 200 + 50 + 90
         assertThat(checkout.checkout("AAABBAAABB"), equalTo(340));
@@ -70,6 +86,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("ABCD"), equalTo(115));
     }
 }
+
 
 
 
