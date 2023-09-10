@@ -27,6 +27,7 @@ public class CredentialsConfigFile {
     private static Properties readPropertiesFile() throws ConfigNotFoundException {
         Properties properties = new Properties();
         Path config = Paths.get("config", "credentials.config");
+        System.out.println(config.toAbsolutePath());
         try {
             properties.load(new FileInputStream(config.toFile()));
         } catch (IOException e) {
