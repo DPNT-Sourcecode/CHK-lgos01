@@ -1,34 +1,31 @@
 package befaster.solutions.CHK;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import befaster.solutions.HLO.HelloSolution;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CheckoutSolutionTest {
 
-    Map<Character, Integer> prices = new HashMap<>();
-    Map<Character, Integer> count = new HashMap<>();
-    public Integer checkout(String skus) {
-        prices.put('A', 50);
-        prices.put('B', 30);
-        prices.put('C', 20);
-        prices.put('D', 15);
+    private CheckoutSolution checkout;
 
-        int total = 0;
-        for (int i = 0; i < skus.length(); i++) {
-            char sku = skus.charAt(i);
-            count.put(sku, count.getOrDefault(sku, 0) + 1);
-        }
+    @BeforeEach
+    public void setUp() {
+        checkout = new CheckoutSolution();
+    }
 
-        total += 130 * count.get('A') / 3;
-        total += 45 * count.get('B') / 2;
+    @Test
+    public void compute_checkout() {
+        assertThat(checkout.checkout("AAABBAAABB"), equalTo(350));
+    }
 
-        for (Map.Entry<Character, Integer> entry : count.entrySet()){
-            total += entry.getValue() * prices.get(entry.getKey());
-        }
-        total += count.get('A') % 3;
-        total += count.get('B') % 2;
-
-
-        return total;
+    @Test
+    public void test_illegal_argument() {
+        assertThat(checkout.checkout("REAAABBAAABB"), equalTo(-1));
     }
 }
+
